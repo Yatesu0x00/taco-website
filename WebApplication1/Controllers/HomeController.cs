@@ -40,7 +40,7 @@ namespace WebApplication1.Controllers
         {
             using (HttpClient client = new HttpClient())
             {
-                string url = "http://localhost:65486/nothome/test";
+                string url = "http://172.29.213.9:32001/nothome/test"; //http://localhost:65486
                 HttpResponseMessage response = await client.GetAsync(url);
 
                 if (response.IsSuccessStatusCode)
