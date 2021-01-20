@@ -12,51 +12,45 @@ namespace WebApplication1.Controllers
 {
     public class HomeController : Controller
     {
-        NotHomeController notHome;
-
         // GET: /HomeController/
         public IActionResult Index()
         {
             return View();
         }
 
-        // GET: /HomeController/test/
-        public string Test()
-        {
-            //return "test action";
-
-            notHome = new NotHomeController();
-            return notHome.Test();
-        }
-
-        // GET: /HomeController/test2/
-        public ActionResult test2() 
-        {
-            return RedirectToAction("test", "NotHome"); //Redirect function
-        }     
-
-        // GET: /HomeController/test3/
-        public async Task <string> test3()
+        // GET: /HomeController/testsamenode/
+        public async Task <string> TestSameNode()
         {
             using (HttpClient client = new HttpClient())
             {
-                string url = "http://172.29.213.9:32001/nothome/test"; //http://localhost:65486
+                string url = "http://172.29.213.9:32001/nothome/test";
                 HttpResponseMessage response = await client.GetAsync(url);
 
                 if (response.IsSuccessStatusCode)
                 {
-                    //string test = await response.Content.ReadAsAsync<string>();
                     string data = await response.Content.ReadAsStringAsync();
                     Console.WriteLine(data);
                     return data;
                 }
                 return "error";
-                //    return Ok(data);
-                //}
-                //else 
-                //{
-                //    return NotFound();
-                //}
+            }
+        }
+
+        // GET: /HomeController/testanothernode/
+        public async Task<string> TestAnotherNode()
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                string url = "http://172.29.213.9:32002/maybehome/test";
+                HttpResponseMessage response = await client.GetAsync(url);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string data = await response.Content.ReadAsStringAsync();
+                    Console.WriteLine(data);
+                    return data;
+                }
+                return "error";
             }
         }
 
