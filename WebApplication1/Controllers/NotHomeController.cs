@@ -16,7 +16,7 @@ namespace WebApplication1.Controllers
         // GET: /NotHomeController/test/
         public string Test()
         {
-            return "test notHome";
+            return "Your are on the same Node tho ( •_•)";
         }
     }
 }

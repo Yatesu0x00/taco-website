@@ -16,7 +16,7 @@ namespace WebApplication2.Controllers
         // GET: /NotHomeController/test/
         public string Test()
         {
-            return "IT WOOOOORKS! ＼(^o^)／";
+            return "Nice! IT WOOOOORKS! ＼(^o^)／";
         }
     }
 }
