@@ -27,7 +27,7 @@ namespace WebApplication1.Controllers
         {
             using (HttpClient client = new HttpClient())
             {
-                string url = "http://172.29.213.18:32000/nothome/test"; //localhost:44344
+                string url = "http://172.29.213.18:32000/home2/test"; //specify your ip of the masternode and the port of the node
 
                 HttpResponseMessage response = await client.GetAsync(url);
 
@@ -35,17 +35,7 @@ namespace WebApplication1.Controllers
                 {
                     string data = await response.Content.ReadAsStringAsync();
                     
-                    while (true)
-                    {
-                        rnd = new Random();
-
-                        int timeToWait = rnd.Next(1, 60);
-                        Thread.Sleep(timeToWait * 1000);
-
-                        Console.WriteLine(data);
-
-                        return data;
-                    }
+                    return data;
                 }
                 return "error";
             }
@@ -56,26 +46,24 @@ namespace WebApplication1.Controllers
         {
             using (HttpClient client = new HttpClient())
             {
-                string url = "http://172.29.213.18:32001/nothome/test"; //localhost:44344
+                string url = "http://172.29.213.18:32001/nothome/test"; //specify your ip of the masternode and the port of the node 
                 HttpResponseMessage response = await client.GetAsync(url);
 
                 if (response.IsSuccessStatusCode)
                 {
                     string data = await response.Content.ReadAsStringAsync();
-                 
+
+                    rnd = new Random();
+                    int timeToWait = rnd.Next(1, 10);
+                    
                     while (true)
-                    {
-                        rnd = new Random();
-
-                        int timeToWait = rnd.Next(1, 60);
-                        Thread.Sleep(timeToWait * 1000);
-
-                        Console.WriteLine(data);
+                    {                      
+                        Thread.Sleep(timeToWait * 100); //wait between 0.1 and 1 sek
 
                         return data;
                     }
                 }
-                return "error";
+                return "Error";
             }
         }
 

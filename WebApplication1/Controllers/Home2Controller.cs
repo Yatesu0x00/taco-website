@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace WebApplication1.Controllers
 {
-    public class NotHomeController : Controller
+    public class Home2Controller : Controller
     {
         public IActionResult Index()
         {
             return View();
         }
 
-        // GET: /NotHomeController/test/
+        // GET: /Home2Controller/test/
         public string Test()
         {
             return "Your are on the same Node tho ( •_•)";
